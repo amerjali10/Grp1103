@@ -12,7 +12,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 //@ComponentScan(basePackageClasses = CustomeController.class)
 public class Grupo11Application {
 
-	public static void main(String[] args) {
+	public static void main2(String[] args) {
 		SpringApplication.run(Grupo11Application.class, args);
                 int i = 1;
 	}
