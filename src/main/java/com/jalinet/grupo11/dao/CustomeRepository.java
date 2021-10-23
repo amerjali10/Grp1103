@@ -29,7 +29,9 @@ public class CustomeRepository {
   
   public void delete(Custome custome ) {customeCrudRepository.delete(custome);};
 
-
+    public List<Object[]> getTopByCategory(){
+        return customeCrudRepository.countTotalCustomeByCategory();
+    }
   
 }
 

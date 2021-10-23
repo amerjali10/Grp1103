@@ -6,6 +6,7 @@
 package com.jalinet.grupo11.service;
 
 import com.jalinet.grupo11.entities.Custome;
+import com.jalinet.grupo11.entities.custom.CategoryAmount;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +41,7 @@ public class CustomeController {
       public Optional<Custome> getCustome(@PathVariable("id") int customeId) {
           return customeService.getCustome(customeId);
       }
-      @CrossOrigin(origins = "http://132.226.240.254")
+      //@CrossOrigin(origins = "http://132.226.240.254")
       @PostMapping("/save")
       @ResponseStatus(HttpStatus.CREATED) 
       public Custome save(@RequestBody Custome custome) {return customeService.save(custome);};
@@ -50,9 +51,14 @@ public class CustomeController {
       public Custome update(@RequestBody Custome custome) {return customeService.update(custome);};
 
       @DeleteMapping("/{id}")
+      @ResponseStatus(HttpStatus.NO_CONTENT) 
       public void delete(@PathVariable("id") int customeId) {
           customeService.deleteCustome(customeId);
       }
       
-   
+   //Report!
+    @GetMapping("/report")
+    public List<CategoryAmount> getReport(){
+        return customeService.getTopCustomeByCategory();
+    }
 }

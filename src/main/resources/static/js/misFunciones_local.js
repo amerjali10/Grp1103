@@ -8,20 +8,25 @@ function traerInformacion(){
     success : function(respuesta) {
 		console.log(respuesta);
 		$("#resultado").empty();
-        let miTabla = '<table>';
+        let miTabla = '<div class="container"><div  class= "row">';
 		for (i=0; i<respuesta.length; i++){
-			miTabla += '<tr>';
-	        miTabla += '<td>'+ respuesta[i].id+ '</td>'; 		
-	        miTabla += '<td>'+ respuesta[i].brand+ '</td>'; 		
-	        miTabla += '<td>'+ respuesta[i].name+ '</td>'; 		
-	        miTabla += '<td>'+ respuesta[i].model+ '</td>'; 		
-	        miTabla += '<td>'+ respuesta[i].category.id+ '</td>'; 		
-            miTabla += '<td><button onclick="editarRegistro('+respuesta[i].id+' )">Editar</button>';			
-            miTabla += '<td><button onclick="eliminarRegistro('+respuesta[i].id+' )">Borrar</button>';			
-			miTabla += '</tr>';
+			miTabla += `
+			            	<div class="card m-2" >
+								<div class="card-body" >
+							 
+								   <h5 class ="card-title">  ${respuesta[i].id} - ${respuesta[i].brand}</h5> 		
+								   <h6 class ="card-subtitle mb-2 text-muted">  ${respuesta[i].name} </h6> 		
+								   <p class= "card-text"> ${respuesta[i].model} <br> 		
+														  ${respuesta[i].category.name}</p>
+								   <button class="btn btn-primary" onclick="editarRegistro(${respuesta[i].id} )" >Editar</button>
+								   <button  class="btn btn-danger" onclick="eliminarRegistro(${respuesta[i].id} )">Borrar</button>
+								   
+								</div>
+							</div>
+                       `
 	
 		}
-        miTabla += '</table>';
+        miTabla += '</div></div>';
 	    $("#resultado").append(miTabla);    
         pintarSelect(0);
        
@@ -166,7 +171,7 @@ function eliminarRegistro(id){
         contentType: "application/json; charset=utf-8",
   
     statusCode : {
-		200 :  function() {
+	204 :  function() {
 			alert("Eliminado el registro No:"+id);
         	        traerInformacion();	
 			}

@@ -6,7 +6,10 @@
 package com.jalinet.grupo11.service;
 
 import com.jalinet.grupo11.dao.CustomeRepository;
+import com.jalinet.grupo11.entities.Category;
 import com.jalinet.grupo11.entities.Custome;
+import com.jalinet.grupo11.entities.custom.CategoryAmount;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
@@ -83,4 +86,13 @@ public class CustomeService {
         return aBoolean;
   }
     
+  
+      public List<CategoryAmount> getTopCustomeByCategory(){
+        List<Object[]> report= customeRepository.getTopByCategory();
+        List<CategoryAmount>res=new ArrayList<>();
+        for(int i=0;i<report.size();i++){
+            res.add(new CategoryAmount((Category)report.get(i)[0],(Long) report.get(i)[1]));
+        }
+        return res;
+      }
 }

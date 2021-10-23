@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author JaliNet
  */
 @SpringBootApplication
-@RestController
+//@RestController
 public class SocialApplication extends WebSecurityConfigurerAdapter {
 
 
@@ -37,7 +37,7 @@ public class SocialApplication extends WebSecurityConfigurerAdapter {
     	// @formatter:off
         http
             .authorizeRequests(a -> a
-                .antMatchers("/","/api/Category/**","/api/Custome/**", "/error", "/webjars/**").permitAll()
+                .antMatchers("/","/h2-console/**","/api/Category/**","/api/Custome/**", "/error", "/webjars/**").permitAll()
                 .anyRequest().authenticated()
             )
             .exceptionHandling(e -> e
